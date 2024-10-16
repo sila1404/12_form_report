@@ -1,0 +1,31 @@
+[project]
+authors = [{name = "sila1404", email = "silamany1404@gmail.com"}]
+dependencies = []
+description = "Add a short description here"
+name = "backend"
+requires-python = ">= 3.11"
+version = "0.1.0"
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.hatch.build.targets.wheel]
+  packages = ["src/main.py"]
+
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["win-64"]
+
+[tool.pixi.pypi-dependencies]
+backend = { path = ".", editable = true }
+
+[tool.pixi.dependencies]
+fastapi = ">=0.110.3,<0.111"
+pandas = ">=2.2.3,<3"
+uvicorn = ">=0.31.1,<0.32"
+openpyxl = ">=3.1.5,<4"
+python-multipart = ">=0.0.12,<0.0.13"
+
+[tool.pixi.tasks]
+dev = "python ./src/main.py"
