@@ -2,7 +2,7 @@ from fastapi import FastAPI, File, UploadFile
 from io import BytesIO
 
 from utils import read_file
-from routes import f02_route
+from routes import f2_route
 
 app = FastAPI()
 
@@ -34,7 +34,7 @@ def root():
     return {"message": "Hello, World!"}
 
 
-app.include_router(f02_route)
+app.include_router(f2_route)
 
 if __name__ == "__main__":
     import uvicorn

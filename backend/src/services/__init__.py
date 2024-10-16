@@ -1,5 +1,5 @@
-from .f02 import F02
+from .service_f2 import F2
 
 __all__ = [
-    "F02"
+    "F2"
 ]

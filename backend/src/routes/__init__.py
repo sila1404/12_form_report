@@ -1,5 +1,5 @@
-from .report_f02 import f02_route
+from .report_f2 import f2_route
 
 __all__ = [
-    "f02_route"
+    "f2_route"
 ]
