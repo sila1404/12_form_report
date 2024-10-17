@@ -1,4 +1,4 @@
-from .service_f2 import F2
+from .f2_service import F2
 
 __all__ = [
     "F2"
