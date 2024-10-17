@@ -16,3 +16,5 @@ class F3:
         total = report_1 + report_2
 
         return {"total": total, "report_1": report_1, "report_2": report_2}
+
+
