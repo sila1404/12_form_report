@@ -10,7 +10,7 @@ class F3:
         report_1 = get_closing_balance_credit(self.file, 51013)
         report_2 = (
             get_closing_balance_credit(self.file, 51021)
-            + get_closing_balance_credit(self.file, 51028)
+            + get_closing_balance_credit(self.file, 51029)
             + get_closing_balance_credit(self.file, 51022)
         )
         total = report_1 + report_2
