@@ -8,7 +8,7 @@ f9_route = APIRouter(prefix="/reports")
 
 @f9_route.get("/f9")
 def get_f3_report(req: Request):
-    df_report: pd.DataFrame = req.app.state.df_report
+    df_report: pd.DataFrame = getattr(req.app.state, "df_report", None)
 
     if df_report is None:
         return JSONResponse(
