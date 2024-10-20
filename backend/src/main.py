@@ -1,4 +1,5 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, status
+from fastapi.responses import JSONResponse
 from io import BytesIO
 
 from utils import read_file
@@ -13,7 +14,10 @@ app.state.report = None
 async def upload(file: UploadFile = File(None)):
     # If no file and no existing report, return an error
     if file is None:
-        return {"error": "No file uploaded and no existing report."}
+        return JSONResponse(
+            content={"error": "No file uploaded and no existing report."},
+            status_code=status.HTTP_404_NOT_FOUND,
+        )
 
     # If the file is provided, update the report
     if file.filename.endswith((".xlsx", ".xls")):
@@ -22,11 +26,17 @@ async def upload(file: UploadFile = File(None)):
             df = read_file(BytesIO(contents))
             # Store the report dataframe in app state to use it across the project
             app.state.df_report = df
-            return {"message": "File uploaded successfully"}
+            return JSONResponse(content={"message": "File uploaded successfully"})
         except Exception as e:
-            return {"error": f"An error occur while processing the file: {e}"}
+            return JSONResponse(
+                content={"error": f"An error occur while processing the file: {e}"},
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
     else:
-        return {"error": "Invalid file type. Please upload an Excel file"}
+        return JSONResponse(
+            content={"error": "Invalid file type. Please upload an Excel file"},
+            status_code=status.HTTP_400_BAD_REQUEST,
+        )
 
 
 @app.get("/")
