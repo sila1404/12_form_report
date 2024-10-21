@@ -5,7 +5,6 @@ import axios from "axios";
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 
@@ -53,7 +52,7 @@ function RootComponent() {
               }}
               activeOptions={{ exact: true }}
             >
-              <NavigationMenuLink>F02</NavigationMenuLink>
+              F02
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
@@ -64,7 +63,7 @@ function RootComponent() {
               }}
               activeOptions={{ exact: true }}
             >
-              <NavigationMenuLink>F03</NavigationMenuLink>
+              F03
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
@@ -75,7 +74,7 @@ function RootComponent() {
               }}
               activeOptions={{ exact: true }}
             >
-              <NavigationMenuLink>F09</NavigationMenuLink>
+              F09
             </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
