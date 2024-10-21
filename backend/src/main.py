@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from io import BytesIO
 
 from utils import read_file
-from routes import f2_route, f3_route
+from routes import f2_route, f3_route, f9_route
 
 app = FastAPI()
 
@@ -57,6 +57,7 @@ def root():
 
 app.include_router(f2_route)
 app.include_router(f3_route)
+app.include_router(f9_route)
 
 if __name__ == "__main__":
     import uvicorn
