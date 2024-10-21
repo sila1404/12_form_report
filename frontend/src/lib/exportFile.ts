@@ -20,7 +20,7 @@ export function exportToCSV(data: any, fileName: string) {
     // Convert worksheet data to CSV
     const csv = XLSX.utils.sheet_to_csv(worksheet)
     
-    // Add BOM for UTF-8
+    // Add BOM (Byte Order Mark) for UTF-8
     const bom = '\uFEFF'; // UTF-8 BOM
     const csvWithBOM = bom + csv;
   
