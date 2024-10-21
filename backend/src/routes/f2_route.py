@@ -8,7 +8,7 @@ f2_route = APIRouter(prefix="/reports")
 
 @f2_route.get("/f2")
 async def get_first_f2_total(req: Request):
-    df_report: pd.DataFrame = req.app.state.df_report
+    df_report: pd.DataFrame = getattr(req.app.state, "df_report", None)
     if df_report is None:
         return JSONResponse(
             content={"error": "No report available. Please upload the file first"},
