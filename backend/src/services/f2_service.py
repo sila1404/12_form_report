@@ -130,3 +130,23 @@ class F2:
             "report_9": report_9,
             "report_11": report_11,
         }
+
+    def asset_and_liability(self):
+        total_asset = (
+            self.total_first
+            + self.total_second
+            + self.total_fifth
+            + self.total_eighth
+            + self.total_tenth
+        )
+        total_liability = (
+            self.total_eleventh
+            + self.total_twelfth
+            + self.total_fifteenth
+            + self.total_sixteenth
+        )
+
+        return {
+            "total_asset": total_asset,
+            "total_liability": total_liability
+        }
