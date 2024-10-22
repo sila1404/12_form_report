@@ -12,6 +12,9 @@ import ImportButton from "@/components/ImportButton";
 
 export const Route = createRootRoute({
   component: RootComponent,
+  notFoundComponent() {
+    return <div>Page not found 404</div>;
+  },
 });
 
 function RootComponent() {
