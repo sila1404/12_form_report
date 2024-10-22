@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Button } from "./ui/button";
 
-import { DownloadIcon } from "@radix-ui/react-icons";
+import { FilePlusIcon  } from "@radix-ui/react-icons";
 
 type Props = {
   children: React.ReactNode;
@@ -28,7 +28,7 @@ const ImportButton = (props: Props) => {
         onClick={handleClick}
       >
         {props.children}
-        <DownloadIcon />
+        <FilePlusIcon />
       </Button>
       <input
         type="file"
