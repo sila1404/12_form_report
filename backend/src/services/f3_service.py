@@ -107,3 +107,18 @@ class F3:
         self.total_twenty_first = report_1
 
         return {"total": self.total_twenty_first, "report_1": report_1}
+    
+    def summarize(self):
+        summary_1 = self.total_first + self.total_second
+        summary_2 = summary_1 + self.total_nineth + self.total_tenth
+        summary_3 = self.total_fifteenth + self.total_sixteenth + self.total_seventeenth + self.total_eigthteenth + self.total_nineteenth
+        summary_4 = summary_2 - summary_3
+        summary_5 = summary_4 - self.total_twenty_first
+
+        return {
+            "summary_1": summary_1,
+            "summary_2": summary_2,
+            "summary_3": summary_3,
+            "summary_4": summary_4,
+            "summary_5": summary_5,
+        }
