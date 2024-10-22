@@ -1,6 +1,7 @@
 import { Button, buttonVariants } from "./ui/button";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
 import { exportToExcel, exportToCSV } from "@/lib/exportFile";
+import { DownloadIcon } from "@radix-ui/react-icons";
 
 type Props = {
   data: any;
@@ -15,6 +16,7 @@ const DownloadButton = (props: Props) => {
         <PopoverTrigger asChild>
           <Button className="ml-32 font-bold bg-blue-600 hover:bg-blue-700">
             Download
+            <DownloadIcon />
           </Button>
         </PopoverTrigger>
         <PopoverContent>
