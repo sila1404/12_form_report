@@ -42,4 +42,4 @@ def get_f3_report(req: Request):
     #     ]
     # }
 
-    return JSONResponse(content=first_report)
+    return JSONResponse(content={"data": first_report}) 

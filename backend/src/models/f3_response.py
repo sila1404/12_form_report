@@ -38,5 +38,3 @@ def get_f3_report(req: Request):
     first_report = f3.first_report()
     second_report = f3.second_report()
 
-    report = F3Report(
-        first_report=F
