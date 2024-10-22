@@ -19,7 +19,7 @@ class F2:
 
     def second_report(self) -> dict[str, int]:
         report_1 = get_closing_balance_debit(
-            self.file, 133111
+            self.file, 113111
         ) + get_closing_balance_debit(self.file, 113113)
         report_2 = get_closing_balance_debit(self.file, 113115)
         self.total_second = report_1 + report_2
@@ -64,9 +64,11 @@ class F2:
             + get_closing_balance_debit(self.file, 12037)
             + get_closing_balance_debit(self.file, 1297)
         )
-        report_3 = get_closing_balance_debit(
-            self.file, 136137
-        ) + get_closing_balance_debit(self.file, 138)
+        report_3 = (
+            get_closing_balance_debit(self.file, 136)
+            + get_closing_balance_debit(self.file, 137)
+            + get_closing_balance_debit(self.file, 138)
+        )
         self.total_tenth = report_1 + report_3
 
         return {
@@ -146,7 +148,4 @@ class F2:
             + self.total_sixteenth
         )
 
-        return {
-            "total_asset": total_asset,
-            "total_liability": total_liability
-        }
+        return {"total_asset": total_asset, "total_liability": total_liability}
