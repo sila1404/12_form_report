@@ -13,22 +13,26 @@ class F3:
             + get_closing_balance_credit(self.file, 51029)
             + get_closing_balance_credit(self.file, 51022)
         )
+        print(f"Report 2 (Credit 51021 + 51029 + 51022): {report_2}")
+
         self.total_first = report_1 + report_2
+        print(f"Total First: {self.total_first}")
 
         return {"total": self.total_first, "report_1": report_1, "report_2": report_2}
-
+    
     def second_report(self):
         report_1 = get_closing_balance_debit(self.file, 41013)
         report_2 = get_closing_balance_debit(self.file, 41021)
         report_4 = get_closing_balance_debit(self.file, 41022)
         self.total_second = report_1 + report_2 + report_4
 
-        return {
-            "total": self.total_second,
-            "report_1": report_1,
-            "report_2": report_2,
-            "report_4": report_4,
-        }
+        # return {
+        #     "total": self.total_second,
+        #     "report_1": report_1,
+        #     "report_2": report_2,
+        #     "report_4": report_4,
+        # }
+        return get_closing_balance_debit(self.file, 41013)
 
     def nineth_report(self):
         report_2 = get_closing_balance_credit(self.file, 51028)
@@ -106,4 +110,5 @@ class F3:
         report_1 = get_closing_balance_debit(self.file, 490)
         self.total_twenty_first = report_1
 
-        return {"total": self.total_twenty_one, "report_1": report_1}
+        return {"total": self.total_twenty_one, "report_1": report_1} 
+    
