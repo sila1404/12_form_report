@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import axios from "axios";
 import ReportHeader from "@/components/ReportHeader";
 import DownloadButton from "@/components/DownloadButton";
 import {
@@ -13,35 +12,39 @@ import {
 } from "@/components/ui/table";
 
 import { formatNumber } from "@/lib/formatNumberWithComma";
+import { getReportData } from "@/lib/getReportData";
 
 export const Route = createFileRoute("/f9")({
   component: ReportF9,
 });
 
-type ReportF9Response = {
+export type ReportResponseType = {
   columns: Array<string>;
   data: Array<Array<string | number>>;
 };
 
 function ReportF9() {
-const [reportData, setReportData] = useState<ReportF9Response>();
+  const [reportData, setReportData] = useState<ReportResponseType>();
+  const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
-    const getF9Report = async () => {
-      const { data, status } = await axios.get(
-        "http://127.0.0.1:8000/reports/f9"
-      );
-
-      if (status === 200) {
-        setReportData(data);
-        console.log(data);
+    const fetchData = async () => {
+      const result = await getReportData("/f9");
+      if (result.status === 200) {
+        setReportData(result.data);
+      } else {
+        setErrMsg(result.message);
       }
     };
 
-    getF9Report();
+    fetchData();
   }, []);
 
-  function flattenData(data: ReportF9Response | undefined) {
+  if (!reportData) {
+    return <div>{errMsg}</div>;
+  }
+
+  function flattenData(data: ReportResponseType) {
     const result: any[] = [];
     data?.data.forEach((detail) => {
       result.push({
