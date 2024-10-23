@@ -106,9 +106,8 @@ class F3:
             "report_2": report_2,
         }
 
-    def twenty_first_report(self):
+    def twenty_one_report(self):
         report_1 = get_closing_balance_debit(self.file, 490)
-        self.total_twenty_first = report_1
-
+        self.total_twenty_one = report_1
         return {"total": self.total_twenty_one, "report_1": report_1} 
     
