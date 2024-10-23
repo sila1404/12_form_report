@@ -35,6 +35,7 @@ function RootComponent() {
 
       if (status === 200) {
         alert(data.message);
+        window.location.reload()
       }
     } catch (error) {
       if (error instanceof Error) {
