@@ -18,7 +18,7 @@ export const Route = createRootRoute({
     const handleFile = async (file: File) => {
       const formData = new FormData();
       formData.append("file", file);
-  
+
       try {
         const { data, status } = await axios.post(
           "http://127.0.0.1:8000/upload",
@@ -29,18 +29,28 @@ export const Route = createRootRoute({
             },
           }
         );
-  
+
         if (status === 200) {
           alert(data.message);
-          window.location.reload()
+          window.location.reload();
         }
       } catch (error) {
-        if (error instanceof Error) {
-          console.error("Error uploading file: ", error.message);
+        if (axios.isAxiosError(error)) {
+          if (error.response) {
+            const errorMessage =
+              error.response.data.error ||
+              "An error occurred. Please try again.";
+            alert(errorMessage);
+          } else {
+            console.error("No response received from server:", error.message);
+          }
+        } else if (error instanceof Error) {
+          console.error("Unexpected error:", error);
+          alert("Something went wrong. Please try again.");
         }
       }
     };
-  
+
     return (
       <>
         <NavigationMenu className="mx-auto my-4 shadow shadow-slate-800 p-2 rounded-md">
