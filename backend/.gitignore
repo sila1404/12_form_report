@@ -3,4 +3,7 @@
 .pixi
 *.egg-info
 *.md
+# magic environments
+.magic
+
 __pycache__
