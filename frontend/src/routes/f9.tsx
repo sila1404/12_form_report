@@ -12,6 +12,7 @@ import {
 
 import { formatNumber } from "@/lib/formatNumberWithComma";
 import { getReportData } from "@/lib/getReportData";
+import { flatten8ColumnsData } from "@/lib/flattenData";
 
 export type ReportResponseType = {
   columns: Array<string>;
@@ -32,24 +33,6 @@ export const Route = createFileRoute("/f9")({
 
     if (!reportData) {
       return <div>{message}</div>;
-    }
-
-    function flattenData(data: ReportResponseType) {
-      const result: any[] = [];
-      data?.data.forEach((detail) => {
-        result.push({
-          "Account Code": detail[0],
-          Item: detail[1],
-          "Balance Forward Debit": detail[2],
-          "Balance Forward Credit": detail[3],
-          "Movement in the month Debit": detail[4],
-          "Movement in the month Credit": detail[5],
-          "Closing Balance Debit": detail[6],
-          "Closing Balance Credit": detail[7],
-        });
-      });
-
-      return result;
     }
 
     return (
@@ -93,7 +76,7 @@ export const Route = createFileRoute("/f9")({
             </Table>
           </div>
           <DownloadButton
-            data={flattenData(reportData)}
+            data={flatten8ColumnsData(reportData)}
             fileName="Report_F09"
             sheetName="Report F9"
           />
