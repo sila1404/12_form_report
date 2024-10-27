@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import JSONResponse
 import pandas as pd
-
+from utils import response_message
 
 f9_route = APIRouter(prefix="/reports")
 
@@ -12,8 +12,17 @@ def get_f3_report(req: Request):
 
     if df_report is None:
         return JSONResponse(
-            content={"error": "No report available. Please upload the file first."},
+            content=response_message(
+                message="No report available. Please upload the file first.",
+                success=False,
+            ),
             status_code=status.HTTP_404_NOT_FOUND,
         )
 
-    return JSONResponse(content=df_report.to_dict(orient="split"))
+    return JSONResponse(
+        content=response_message(
+            message="Successfully load the F9 report data.",
+            response_data=df_report.to_dict(orient="split"),
+            success=True,
+        )
+    )

@@ -2,6 +2,7 @@ from fastapi import APIRouter, Request, status
 from fastapi.responses import JSONResponse
 import pandas as pd
 from services import F2
+from utils import response_message
 
 f2_route = APIRouter(prefix="/reports")
 
@@ -11,7 +12,10 @@ async def get_f2_reports(req: Request):
     df_report: pd.DataFrame = getattr(req.app.state, "df_report", None)
     if df_report is None:
         return JSONResponse(
-            content={"error": "No report available. Please upload the file first"},
+            content=response_message(
+                message="No report available. Please upload the file first.",
+                success=False,
+            ),
             status_code=status.HTTP_404_NOT_FOUND,
         )
 
@@ -129,10 +133,18 @@ async def get_f2_reports(req: Request):
             ],
         }
 
-        return JSONResponse(content=response_data)
+        return JSONResponse(
+            content=response_message(
+                message="Successfully calculate the F2 report.",
+                response_data=response_data,
+                success=True,
+            )
+        )
 
     except Exception as e:
         return JSONResponse(
-            content={"error": f"An internal error occurred: {e}"},
+            content=response_message(
+                message=f"An internal error occurred: {e}", success=False
+            ),
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
