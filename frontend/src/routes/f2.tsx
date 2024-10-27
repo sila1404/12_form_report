@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import ReportHeader from "@/components/ReportHeader";
 import DownloadButton from "@/components/DownloadButton";
@@ -17,25 +16,19 @@ import { getReportData } from "@/lib/getReportData";
 import { formatNumber } from "@/lib/formatNumberWithComma";
 
 export const Route = createFileRoute("/f2")({
+  loader: async () => {
+    const result = await getReportData("/f2");
+
+    return {
+      reportData: result.data.response_data as ReportResponseType,
+      message: result.data.message,
+    };
+  },
   component: () => {
-    const [reportData, setReportData] = useState<ReportResponseType>();
-    const [errMsg, setErrMsg] = useState("");
-
-    useEffect(() => {
-      const fetchData = async () => {
-        const result = await getReportData("/f2");
-        if (result.status === 200) {
-          setReportData(result.data);
-        } else {
-          setErrMsg(result.message);
-        }
-      };
-
-      fetchData();
-    }, []);
+    const { message, reportData } = Route.useLoaderData();
 
     if (!reportData) {
-      return <div>{errMsg}</div>;
+      return <div>{message}</div>;
     }
 
     function flattenData(data: ReportResponseType) {
