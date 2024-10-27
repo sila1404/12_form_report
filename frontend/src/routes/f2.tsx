@@ -14,6 +14,7 @@ import { ReportResponseType } from "./f9";
 
 import { getReportData } from "@/lib/getReportData";
 import { formatNumber } from "@/lib/formatNumberWithComma";
+import { flatten2ColumnsData } from "@/lib/flattenData";
 
 export const Route = createFileRoute("/f2")({
   loader: async () => {
@@ -29,18 +30,6 @@ export const Route = createFileRoute("/f2")({
 
     if (!reportData) {
       return <div>{message}</div>;
-    }
-
-    function flattenData(data: ReportResponseType) {
-      const result: any[] = [];
-      data?.data.forEach((detail) => {
-        result.push({
-          Item: detail[0],
-          "Amount (KIP)": detail[1],
-        });
-      });
-
-      return result;
     }
 
     return (
@@ -80,7 +69,7 @@ export const Route = createFileRoute("/f2")({
             </TableBody>
           </Table>
           <DownloadButton
-            data={flattenData(reportData)}
+            data={flatten2ColumnsData(reportData)}
             fileName="Report_F2"
             sheetName="Report F2"
           />
