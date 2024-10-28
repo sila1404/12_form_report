@@ -10,7 +10,6 @@ export async function getReportData(endPoint: string) {
       data,
       status,
       success: true,
-      message: ""
     };
   } catch (error) {
     if (axios.isAxiosError(error)) {
