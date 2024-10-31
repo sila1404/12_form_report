@@ -53,7 +53,7 @@ export const Route = createRootRoute({
 
     return (
       <>
-        <NavigationMenu className="mx-auto my-4 shadow shadow-slate-800 p-2 rounded-md">
+        <NavigationMenu className="mx-auto my-4 shadow shadow-slate-800 p-2 rounded-md sticky top-5 backdrop-blur-md">
           <NavigationMenuList className="text-xl gap-3 grow">
             <NavigationMenuItem>
               <Link
