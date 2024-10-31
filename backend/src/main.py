@@ -36,7 +36,7 @@ async def upload(file: UploadFile = File(None)):
             contents = await file.read()
             df = read_file(BytesIO(contents))
             # Store the report dataframe in app state to use it across the project
-            app.state.df_report = df
+            app.state.df_report = df.astype(object)
             return JSONResponse(content={"message": "File uploaded successfully"})
         except Exception as e:
             return JSONResponse(
