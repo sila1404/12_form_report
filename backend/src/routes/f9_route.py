@@ -18,11 +18,20 @@ def get_f3_report(req: Request):
             ),
             status_code=status.HTTP_404_NOT_FOUND,
         )
-
-    return JSONResponse(
-        content=response_message(
-            message="Successfully load the F9 report data.",
-            response_data=df_report.to_dict(orient="split"),
-            success=True,
+    
+    try:
+        return JSONResponse(
+            content=response_message(
+                message="Successfully load the F9 report data.",
+                response_data=df_report.to_dict(orient="split"),
+                success=True,
+            )
         )
-    )
+    
+    except Exception as e:
+        return JSONResponse(
+            content=response_message(
+                message=f"An internal error occurred: {e}", success=False
+            ),
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
