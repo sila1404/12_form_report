@@ -5,7 +5,7 @@ services:
     ports:
       - 5173:5173
     volumes:
-      - /app/node_modules
+      - 12_report_node_modules:/app/node_modules
       - ./frontend:/app
 
   backend:
@@ -14,5 +14,9 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - /app/.pixi
+      - 12_report_pixi:/app/.pixi
       - ./backend:/app
+
+volumes:
+  12_report_node_modules:
+  12_report_pixi:
