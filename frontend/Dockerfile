@@ -1,6 +1,6 @@
 FROM oven/bun:1.1.34
 
-WORKDIR /app/frontend
+WORKDIR /app
 
 COPY bun.lockb .
 COPY package.json .
