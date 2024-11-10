@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def get_closing_balance_debit(file: pd.DataFrame, ac_code: int) -> int:
+def get_closing_balance_debit(file: pd.DataFrame, ac_code: str) -> int:
     # Filter the DataFrame for the specified account code
     filtered = file[file["Account Code"] == ac_code]
 
