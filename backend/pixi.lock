@@ -192,7 +192,7 @@ packages:
   name: backend
   version: 0.1.0
   path: .
-  sha256: eb96ee1f069cc39e327945dccb1320abf3b0722c36599d9c2a5534f201783d89
+  sha256: ec86191aadecabb14f75fb2c2542e541005c4bf824f05d9c08fbb4f8f459d577
   requires_python: '>=3.11'
   editable: true
 - kind: conda
